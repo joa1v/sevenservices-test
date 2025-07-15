@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "PlayerInputs",
     "maps": [
         {
             "name": "Player",
@@ -43,21 +43,21 @@
                 },
                 {
                     "name": "LeftPunchGrab",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "e8233849-65c7-42af-b609-d94e289309ac",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RightPunchGrab",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "5722d422-3299-48a7-813f-9f641660d0fe",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
