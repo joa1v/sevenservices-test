@@ -1,7 +1,5 @@
 using StarterAssets;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class PlayerRagdollController : MonoBehaviour
 {

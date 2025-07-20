@@ -5141,6 +5141,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mug
       objectReference: {fileID: 0}
+    - target: {fileID: 6592162228269180274, guid: 35cc0cdfeac5ab34aa0b4898d3d6c871, type: 3}
+      propertyPath: m_Size.z
+      value: 0.51667154
+      objectReference: {fileID: 0}
+    - target: {fileID: 6592162228269180274, guid: 35cc0cdfeac5ab34aa0b4898d3d6c871, type: 3}
+      propertyPath: m_Center.z
+      value: -0.00009793043
+      objectReference: {fileID: 0}
     - target: {fileID: 8826853421120427792, guid: 35cc0cdfeac5ab34aa0b4898d3d6c871, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.55
