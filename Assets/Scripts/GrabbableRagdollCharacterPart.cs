@@ -3,11 +3,12 @@ using UnityEngine;
 public class GrabbableRagdollCharacterPart : MonoBehaviour, IGrabbable
 {
     public bool CanGrab { get; set; } = true;
-    public RagdolCharacter RagDollChar { get; set; }
+    public RagdollCharacter RagDollChar { get; set; }
+    [field: SerializeField] public GrabbableType HoldType { get; set; }
 
     private ConfigurableJoint _joint;
 
-    public void Grab(Transform hand)
+    public void Grab(Transform hand, Vector3 positions, bool local)
     {
         if (!CanGrab || _joint != null)
             return;
@@ -61,7 +62,7 @@ public class GrabbableRagdollCharacterPart : MonoBehaviour, IGrabbable
     {
         if (_joint != null)
         {
-            GameObject.Destroy(_joint);
+            Destroy(_joint);
             _joint = null;
         }
     }

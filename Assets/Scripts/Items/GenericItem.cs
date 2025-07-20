@@ -1,12 +1,13 @@
-using System.Threading.Tasks;
 using UnityEngine;
 
-public class BoxItem : MonoBehaviour, IGrabbable
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
+public class GenericItem : MonoBehaviour, IGrabbable
 {
-    [SerializeField] private float _delayToEnableColliderWhenThrow;
+    [SerializeField] private float _delayToEnableColliderWhenThrow = .2f;
     private Rigidbody _rigidbody;
     private Collider _collider;
     public bool CanGrab { get; set; }
+    [field: SerializeField] public GrabbableType HoldType { get; set; }
 
     private void Start()
     {
@@ -16,13 +17,20 @@ public class BoxItem : MonoBehaviour, IGrabbable
         CanGrab = true;
     }
 
-    public void Grab(Transform parent)
+    public void Grab(Transform parent, Vector3 position, bool local)
     {
         if (!CanGrab)
             return;
 
         transform.SetParent(parent);
-        transform.localPosition = Vector3.zero;
+        if (local)
+        {
+            transform.localPosition = position;
+        }
+        else
+        {
+            transform.position = position;
+        }
         _rigidbody.isKinematic = true;
     }
 

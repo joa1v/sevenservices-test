@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class PlayerInteractions : MonoBehaviour
     [SerializeField] private Vector3 _castOffset;
     [SerializeField] private float _grabRadius;
     [SerializeField] private float _throwForce = 100;
+    [SerializeField] private ItemGrabPosition[] _positions;
 
     [Header("Attack")]
     [SerializeField] private CharacterAttack _attack;
@@ -92,7 +94,8 @@ public class PlayerInteractions : MonoBehaviour
             {
                 if (!hit.TryGetComponent<IGrabbable>(out var grabbable)) continue;
                 _grabbable = grabbable;
-                _grabbable.Grab(hand);
+                var pos = GetHoldPosition(_grabbable);
+                _grabbable.Grab(hand, pos.position, pos.isLocal);
                 if (left)
                 {
                     _isGrabbingLeft = true;
@@ -104,6 +107,16 @@ public class PlayerInteractions : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private (Vector3 position, bool isLocal) GetHoldPosition(IGrabbable grabbable)
+    {
+        var holdPosition = _positions.Where(x => x.Type == grabbable.HoldType).FirstOrDefault();
+        if (holdPosition != null)
+        {
+            return (holdPosition.PositionTr.position, holdPosition.Local);
+        }
+        return (Vector3.zero, true);
     }
 
     private void PlayLefThrowAnim()
@@ -161,3 +174,17 @@ public class PlayerInteractions : MonoBehaviour
     }
 }
 
+[System.Serializable]
+internal class ItemGrabPosition
+{
+    [field: SerializeField] public GrabbableType Type { get; private set; }
+    [field: SerializeField] public Transform PositionTr { get; private set; }
+    [field: SerializeField] public bool Local { get; set; }
+}
+
+public enum GrabbableType
+{
+    TwoHanded,
+    OneHand,
+    Character
+}

@@ -1,13 +1,18 @@
+using System;
 using UnityEngine;
 
-public class RagdolCharacter : MonoBehaviour, IDamageable
+public class RagdollCharacter : MonoBehaviour, IDamageable
 {
     [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] private float _forceToApplyOnDeath = 100f;
     [SerializeField] private RagdollSetter _ragdollSetter;
 
     private float _currentHealth;
     private bool _isDead;
     private GrabbableRagdollCharacterPart[] _parts;
+
+    public Action OnDamageTaken { get; set; }
+    public Action OnDeath { get; set; }
 
     private void Start()
     {
@@ -24,8 +29,9 @@ public class RagdolCharacter : MonoBehaviour, IDamageable
     {
         if (_isDead) return;
 
+        Debug.Log("taking damage: " + amount);
         _currentHealth -= amount;
-
+        OnDamageTaken?.Invoke();
         if (_currentHealth <= 0f)
         {
             Die(hitPoint, hitDirection);
@@ -40,6 +46,7 @@ public class RagdolCharacter : MonoBehaviour, IDamageable
         SetCanGrabParts(true);
 
         ApplyForceToClosestRigidbody(hitPoint, hitDirection);
+        OnDeath?.Invoke();
     }
 
     private async void ApplyForceToClosestRigidbody(Vector3 hitPoint, Vector3 hitDirection)
@@ -60,7 +67,7 @@ public class RagdolCharacter : MonoBehaviour, IDamageable
             }
         }
 
-        float force = 200f;
+        float force = _forceToApplyOnDeath;
         closestRb.AddForceAtPosition(hitDirection.normalized * force, hitPoint, ForceMode.Impulse);
     }
 
