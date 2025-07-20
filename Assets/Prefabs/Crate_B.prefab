@@ -27,7 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2095647338138317453}
   m_Father: {fileID: 0}
@@ -94,6 +94,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ed1f55472e4af44fb39b4e1ee468f55, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8846654418106654562}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ed1f55472e4af44fb39b4e1ee468f55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6467047691441766743}
   m_SourcePrefab: {fileID: 100100000, guid: 5ed1f55472e4af44fb39b4e1ee468f55, type: 3}
 --- !u!1 &1611985794204592183 stripped
 GameObject:
@@ -148,6 +151,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &6467047691441766743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611985794204592183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977bad80aed410e4682a8a8829678c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delayToEnableColliderWhenThrow: 0.1
 --- !u!4 &2095647338138317453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ed1f55472e4af44fb39b4e1ee468f55, type: 3}

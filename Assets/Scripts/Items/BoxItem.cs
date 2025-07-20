@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BoxItem : MonoBehaviour, IGrabbable
 {
-    [SerializeField] private float _delayToEnableCollider;
+    [SerializeField] private float _delayToEnableColliderWhenThrow;
     private Rigidbody _rigidbody;
     private Collider _collider;
     public bool CanGrab { get; set; }
@@ -31,7 +31,7 @@ public class BoxItem : MonoBehaviour, IGrabbable
         _collider.enabled = false;
         Release();
         _rigidbody.AddForce(direction.normalized * force);
-        await Awaitable.WaitForSecondsAsync(_delayToEnableCollider);
+        await Awaitable.WaitForSecondsAsync(_delayToEnableColliderWhenThrow);
         _collider.enabled = true;
     }
 
